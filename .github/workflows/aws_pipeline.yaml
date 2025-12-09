@@ -39,8 +39,8 @@
 
       on:
        workflow_dispatch:   # run manually
-       push:
-        branches: [ main ] # or any branch you want
+         push:
+           branches: [ main ] # or any branch you want
       jobs:
         setup-aws:
           runs-on: ubuntu-latest
