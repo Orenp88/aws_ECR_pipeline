@@ -1,0 +1,35 @@
+name: ECR-pipeline
+
+on: push
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-1   # CHANGE TO YOUR REGION
+
+      # Login to ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and Tag Docker Image
+        run: |
+          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ECR-pipeline:latest
+          echo "IMAGE_URI=$IMAGE_URI"
+          docker build -t $IMAGE_URI .
+
+      - name: Push Image to ECR
+        run: |
+          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ECR-pipeline:latest
+          docker push $IMAGE_URI
