@@ -26,7 +26,7 @@ jobs:
         run: |
           IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ecr-pipeline5:latest
           echo "IMAGE_URI=$IMAGE_URI"
-          docker build -t $IMAGE_URI .
+          docker build -t $IMAGE_URI -f app/Dockerfile .
 
       - name: Push Image to ECR
         run: |
