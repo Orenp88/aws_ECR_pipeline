@@ -24,12 +24,12 @@ jobs:
 
       - name: Build and Tag Docker Image
         run: |
-          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ECR-pipeline5:latest
+          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ecr-pipeline5:latest
           echo "IMAGE_URI=$IMAGE_URI"
           docker build -t $IMAGE_URI .
 
       - name: Push Image to ECR
         run: |
-          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ECR-pipeline5:latest
+          IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/ecr-pipeline5:latest
           docker push $IMAGE_URI
 
