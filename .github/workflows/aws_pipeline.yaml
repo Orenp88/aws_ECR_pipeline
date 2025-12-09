@@ -43,7 +43,7 @@
            branches: [ main ] # or any branch you want
       jobs:
         setup-aws:
-          runs-on: ubuntu-latest
+          runs-on: ubuntu-latest #ggggg
 
           steps:
             # 1) Checkout the repository
