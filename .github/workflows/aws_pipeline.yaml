@@ -35,7 +35,7 @@
       #     docker push $IMAGE_URI
 
 
-      name: AWS Basic
+      name: AWS Basic2
 
       on:
        workflow_dispatch:   # run manually
